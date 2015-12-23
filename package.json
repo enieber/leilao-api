@@ -12,6 +12,8 @@
     "hapi": "^11.1.2",
     "hapi-sequelize": "^2.2.4",
     "inert": "^3.2.0",
+    "koa": "^1.1.2",
+    "koa-route": "^2.4.2",
     "lodash": "^3.10.1",
     "morgan": "~1.6.1",
     "pg": "^4.4.3",
@@ -20,5 +22,10 @@
     "serve-favicon": "~2.3.0",
     "swig": "^1.4.2",
     "vision": "^4.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "charlatan": "^1.0.0",
+    "superagent": "^1.6.1"
   }
 }

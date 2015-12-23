@@ -6,9 +6,11 @@ module.exports = function () {
     return [
         {
             method: 'GET',
-            path: '/lotes',
+            path: '/lote',
             handler: function (request, reply) {
-                models.Lotes.findAll().then(function (leilao) {
+                models.Lote.findAll({
+                  attributes: ['idLote', 'numero', 'descricao', 'quantidade', 'valor']
+                }).then(function (leilao) {
                     reply(leilao);
                 })
             }
@@ -66,65 +68,67 @@ module.exports = function () {
 
                 });
             }
-        }, {
-            method: ['POST','PUT'],
-            path: '/empresa/{idEmpresa}/leilao/{codigo}/update',
-            handler: function (request, reply) {
-
-                models.Leilao.find({
-                    where: {
-                        idEmpresa: request.params['idEmpresa'],
-                        codigo: request.payload['codigo']
-                    }
-                }).then(function (leilao) {
-
-                    models.Leilao.update({
-
-                      // if((request.payload['descricao']) && (request.payload['descricao'] != descricao))
-                      descricao: request.payload['descricao'],
-
-                      // if((request.payload['vendedor']) && (request.payload['vendedor'] != vendedor))
-                      vendedor: request.payload['vendedor'],
-
-                      // if((request.payload['inicioPrevisto']) && (request.payload['inicioPrevisto'] != inicioPrevisto))
-                      inicioPrevisto: request.payload['inicioPrevisto']
-
-                    }).then(function () {
-                        reply.redirect('/');
-                    });
-                });
-
-            }
-        }, {
-            method: 'GET',
-            path: '/empresa/{idEmpresa}/leilao/',
-            handler: function (request, reply) {
-                models.Leilao.find({
-                    where: {
-                        idEmpresa: request.params['idEmpresa']
-                    }
-                }).then(function (empresa) {
-                    reply(leilao);
-                });
-            }
-        }, {
-            method: 'GET',
-            path: '/empresa/{idEmpresa}/leilao/{codigo}',
-            handler: function (request, reply) {
-                models.Empresa.find({
-                    where: {
-                        idEmpresa: request.params['idEmpresa']
-                    }
-                }).then(function (empresa) {
-                    models.Leilao.find({
-                        where: {
-                            codigo: request.params['codigo']
-                        }
-                    }).then(function (leilao) {
-                        reply(leilao);
-                    });
-                });
-            }
-        }
+          }
+        // }, {
+        //     method: ['POST','PUT'],
+        //     path: '/empresa/{idEmpresa}/leilao/{codigo}/update',
+        //     handler: function (request, reply) {
+        //
+        //         models.Leilao.find({
+        //             where: {
+        //                 idEmpresa: request.params['idEmpresa'],
+        //                 codigo: request.payload['codigo']
+        //             }
+        //         }).then(function (leilao) {
+        //
+        //             models.Leilao.update({
+        //
+        //               // if((request.payload['descricao']) && (request.payload['descricao'] != descricao))
+        //               descricao: request.payload['descricao'],
+        //
+        //               // if((request.payload['vendedor']) && (request.payload['vendedor'] != vendedor))
+        //               vendedor: request.payload['vendedor'],
+        //
+        //               // if((request.payload['inicioPrevisto']) && (request.payload['inicioPrevisto'] != inicioPrevisto))
+        //               inicioPrevisto: request.payload['inicioPrevisto']
+        //
+        //             }).then(function () {
+        //                 reply.redirect('/');
+        //             });
+        //         });
+        //
+        //     }
+        // }, {
+        //
+        //     method: 'GET',
+        //     path: '/empresa/{idEmpresa}/leilao/',
+        //     handler: function (request, reply) {
+        //         models.Leilao.find({
+        //             where: {
+        //                 idEmpresa: request.params['idEmpresa']
+        //             }
+        //         }).then(function (empresa) {
+        //             reply(leilao);
+        //         });
+        //     }
+        // }, {
+        //     method: 'GET',
+        //     path: '/empresa/{idEmpresa}/leilao/{codigo}',
+        //     handler: function (request, reply) {
+        //         models.Empresa.find({
+        //             where: {
+        //                 idEmpresa: request.params['idEmpresa']
+        //             }
+        //         }).then(function (empresa) {
+        //             models.Leilao.find({
+        //                 where: {
+        //                     codigo: request.params['codigo']
+        //                 }
+        //             }).then(function (leilao) {
+        //                 reply(leilao);
+        //             });
+        //         });
+        //     }
+        // }
     ];
 }();

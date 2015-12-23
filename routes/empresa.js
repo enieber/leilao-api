@@ -9,34 +9,37 @@ module.exports = function () {
             path: '/empresa',
             handler: function (request, reply) {
 
+              console.log(request.query);
                 models.Empresa.create({
-                    idEmpresa: request.payload['idEmpresa'],
-                    idLeilao: request.payload['idLeilao'],
-                    cnpj: request.payload['cnpj'],
-                    razaoSocial: request.payload['razaoSocial'],
-                    usuario: request.payload['usuario'],
-                    senha: request.payload['senha'],
-                    email: request.payload['email'],
-                    telefone: request.payload['telefone'],
-                    logradouro: request.payload['logradouro'],
-                    municipio: request.payload['municipio'],
-                    numero: request.payload['numero'],
-                    complemento: request.payload['complemento'],
-                    bairro: request.payload[''],
-                    cep: request.payload['cep']
-                }).then(function () {
-                    reply.redirect('/');
+
+                    idEmpresa: request.query['idEmpresa'],
+                    idLeilao: request.query['idLeilao'],
+                    cnpj: request.query['cnpj'],
+                    razaoSocial: request.query['razaoSocial'],
+                    usuario: request.query['usuario'],
+                    senha: request.query['senha'],
+                    email: request.query['email'],
+                    telefone: request.query['telefone'],
+                    logradouro: request.query['logradouro'],
+                    municipio: request.query['municipio'],
+                    numero: request.query['numero'],
+                    complemento: request.query['complemento'],
+                    bairro: request.query['bairro'],
+                    cep: request.query['cep']
+                }).then(function (empresa) {
+                    reply(empresa);
                 });
 
             }
         }, {
             method: 'GET',
-            path: '/empresa',
+            path: '/empresa/',
             handler: function (request, reply) {
-                models.Empresa.find({
+                models.Empresa.findAll({
+                  attributes: ['idEmpresa', 'cnpj', 'razaoSocial', 'usuario', 'senha', 'email', 'telefone', 'logradouro', 'municipio','numero','complemento','bairro','cep'],
                   include: [models.Leilao]
                 }).then(function (empresa) {
-                    reply.view("o");
+                    reply(empresa);
                 })
             }
         }, {
@@ -44,10 +47,11 @@ module.exports = function () {
             method: 'GET',
             path: '/empresa/{idEmpresa}',
             handler: function (request, reply) {
-                models.Empresa.findById({
+                models.Empresa.find({
                   where:{
-                    idEmpresa: request.params['idEmpresa']
+                      idEmpresa: request.params['idEmpresa']
                   },
+                  attributes: ['idEmpresa', 'cnpj', 'razaoSocial', 'usuario', 'senha', 'email', 'telefone', 'logradouro', 'municipio','numero','complemento','bairro','cep'],
                   include: [models.Leilao]
                 }).then(function (empresa) {
                     reply(empresa);
@@ -67,11 +71,11 @@ module.exports = function () {
                 }).then(function (empresa) {
                     models.Leilao.destroy({
                         where: {
-                            idEmpresa: empresa.id
+                            idEmpresa:request.params['idEmpresa']
                         }
                     }).then(function (affectedRows) {
                         empresa.destroy().then(function () {
-                            reply.redirect('/');
+                            reply(affectedRows);
                         });
                     });
                 });

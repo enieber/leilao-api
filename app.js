@@ -13,39 +13,31 @@ const server = new Hapi.Server();
 //     relativeTo: __dirname,
 //     path: './views'
 // });
-
+server.connection({
+    host: 'localhost',
+    port: 3000
+});
 
 
 
 // Start the server
-
-
-server.register(Inert, function () {
-  server.connection({
-      host: 'localhost',
-      port: 3000
-  });
-    server.route( {
-      method: 'GET',
-      path: '/test',
-      handler: function (request, reply) {
-        reply.view({"test": "ok"});
-      }
-    });
-  server.route( {
-      method: 'GET',
-      path: '/{param*}',
-      handler: {
-        directory: { path: path.normalize(__dirname + '/') }
-      }
-    });
-  for (var route in routes) {
-      server.route(routes[route]);
+server.route( {
+  method: 'GET',
+  path: '/test',
+  handler: function (request, reply) {
+    reply({"test": "ok"});
   }
+});
+
+
+  for (var router in routes) {
+      server.route(routes[router]);
+  }
+
+
 
   models.sequelize.sync().then(function() {
       server.start(function () {
           console.log("Hapi server started @", server.info.uri);
       });
   });
-}); // requires a callback funct

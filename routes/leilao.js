@@ -8,13 +8,13 @@ module.exports = function () {
             method: 'GET',
             path: '/leilao',
             handler: function (request, reply) {
-                // models.Leilao.findAll({
-                //   include: [models.Lote],
-                //   include: [models.Comprador]
-                // }).then(function (leilao) {
-                //     reply(leilao);
-                // })
-                reply("Leilões");
+                models.Leilao.findAll({
+                  attributes: ['descricao', 'vendedor', 'inicioPrevisto'],
+                  include: [models.Lote],
+                  include: [models.Comprador]
+                }).then(function (leilao) {
+                    reply(leilao);
+                })
             }
         }, {
             method: 'POST',

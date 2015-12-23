@@ -22,11 +22,8 @@ module.exports = function () {
             method: 'GET',
             path: '/comprador',
             handler: function (request, reply) {
-                models.Comprador.find({
-                  where:{
-                    id: request.params['idComprador']
-                  },
-                  include: [models.leilao]
+                models.Comprador.findAll({
+                  attributes: ['idComprador','idEmpresa','idLeilao'],
                 }).then(function (comprador) {
                     reply(comprador);
                 })

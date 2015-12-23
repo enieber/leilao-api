@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
             unique: true
         },
         razaoSocial:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(64),
             required: true,
             unique: true
         },
