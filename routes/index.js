@@ -1,39 +1,23 @@
 'use strict';
 
-const Hapi = require('hapi');
-const CompradorController = require('../controllers/CompradorController');
-const EmpresaController = require('../controllers/EmpresaController');
-const LeilaoController = require('../controllers/LeilaoController');
-const LoteController = require('../controllers/LoteController');
-const server = new Hapi.Server();
-server.connection({ port: 3000 });
+const path = require('path');
+const fs = require('fs');
+const _ = require('lodash');
+let  mod;
 
-server.route(CompradorController.getCompradores);
-server.route(CompradorController.getCompradorById);
-server.route(CompradorController.postComprador);
-server.route(CompradorController.putCompradorById);
-server.route(CompradorController.deleteCompradorById);
+fs.readdirSync(__dirname).forEach(function (file) {
+    /* If its the current file ignore it */
+    if (file === 'index.js') return;
 
-server.route(EmpresaController.getEmpresas);
-server.route(EmpresaController.getEmpresaById);
-server.route(EmpresaController.postEmpresa);
-server.route(EmpresaController.putEmpresaById);
-server.route(EmpresaController.deleteEmpresaById);
+    /* Prepare empty object to store module */
+    var mod = {};
 
-server.route(LeilaoController.getLeiloes);
-server.route(LeilaoController.getLeilaoById);
-server.route(LeilaoController.postLeilao);
-server.route(LeilaoController.putLeilaoById);
-server.route(LeilaoController.deleteLeilaoById);
+    /* Store module with its name (from filename) */
+    mod[path.basename(file, '.js')] = require(path.join(__dirname, file));
 
-server.route(LoteController.getLotes);
-server.route(LoteController.getLoteById);
-server.route(LoteController.postLote);
-server.route(LoteController.putLoteById);
-server.route(LoteController.deleteLoteById);
 
-server.start(() => {
-    console.log('Server running at:', server.info.uri);
-});
+    /* Extend module.exports */
 
-module.exports = server;
+})
+
+module.exports = mod;

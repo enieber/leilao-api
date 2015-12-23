@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
             required: true,
             unique: true
         },
-        descrição: {
+        descricao: {
             type: DataTypes.STRING(60),
             required: true
         },

@@ -1,60 +1,51 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const Hapi = require('hapi');
+const models = require('./models');
+const routes = require('./routes');
+const Inert = require('inert');
+const path = require('path');
+const server = new Hapi.Server();
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
 
-var app = express();
+// server.views({
+//     engines: {
+//         html: require('swig')
+//     },
+//     relativeTo: __dirname,
+//     path: './views'
+// });
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+// Start the server
 
-// error handlers
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+server.register(Inert, function () {
+  server.connection({
+      host: 'localhost',
+      port: 3000
+  });
+    server.route( {
+      method: 'GET',
+      path: '/test',
+      handler: function (request, reply) {
+        reply.view({"test": "ok"});
+      }
     });
+  server.route( {
+      method: 'GET',
+      path: '/{param*}',
+      handler: {
+        directory: { path: path.normalize(__dirname + '/') }
+      }
+    });
+  for (var route in routes) {
+      server.route(routes[route]);
+  }
+
+  models.sequelize.sync().then(function() {
+      server.start(function () {
+          console.log("Hapi server started @", server.info.uri);
+      });
   });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
-
-
-module.exports = app;
+}); // requires a callback funct

@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
             required: true,
             unique: true
         },
-        razãoSocial:{
+        razaoSocial:{
             type: DataTypes.INTEGER,
             required: true,
             unique: true
