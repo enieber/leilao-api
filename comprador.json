@@ -1,0 +1,25 @@
+{
+  "idComprador": 1,
+  "idEmpresa": 2,
+  "idLeilao": 3
+},
+{
+  "idComprador": 2,
+  "idEmpresa": 2,
+  "idLeilao": 3
+},
+{
+  "idComprador": 3,
+  "idEmpresa": 2,
+  "idLeilao": 3
+},
+{
+  "idComprador": 1,
+  "idEmpresa": 1,
+  "idLeilao": 3
+},
+{
+  "idComprador": 2,
+  "idEmpresa": 1,
+  "idLeilao": 3
+}

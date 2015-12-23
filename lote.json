@@ -1,0 +1,30 @@
+{
+  "idLote": 1,
+  "idLeilao": 2,
+  "numero": 86,
+  "quantidade": 5
+},
+{
+  "idLote": 4,
+  "idLeilao": 2,
+  "numero": 8,
+  "quantidade": 5
+},
+{
+  "idLote": 5,
+  "idLeilao": 1,
+  "numero": 41,
+  "quantidade": 5
+},
+{
+  "idLote": 3,
+  "idLeilao": 2,
+  "numero": 405,
+  "quantidade": 5
+},
+{
+  "idLote": 2,
+  "idLeilao": 1,
+  "numero": 50,
+  "quantidade": 2
+}
