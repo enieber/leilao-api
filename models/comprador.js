@@ -22,6 +22,10 @@ module.exports = function(sequelize, DataTypes) {
               onDelete: "CASCADE",
               foreignkey: 'idComprador'
             })
+            Comprador.belongsTo(models.Empresa, {
+              onDelete: "CASCADE",
+              foreignkey: 'idComprador'
+            })
           }
 
       }
