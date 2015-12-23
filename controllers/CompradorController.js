@@ -14,7 +14,7 @@ CompradorController.getCompradorById = {
     method: 'GET',
     path: '/comprador/{id}',
     handler: function (request, reply) {
-        reply('Hello, world!');
+        reply('Hello '+ encodeURIComponent(request.params.id));
     }
 }
 
@@ -38,7 +38,7 @@ CompradorController.deleteCompradorById = {
     method: 'DELETE',
     path: '/comprador/{id}',
     handler: function (request, reply) {
-        reply('Hello, world!');
+        reply('');
     }
 }
 
