@@ -33,7 +33,7 @@ module.exports = function () {
             }
         }, {
             method: 'GET',
-            path: '/empresa/',
+            path: '/empresa',
             handler: function (request, reply) {
                 models.Empresa.findAll({
                   attributes: ['idEmpresa', 'cnpj', 'razaoSocial', 'usuario', 'senha', 'email', 'telefone', 'logradouro', 'municipio','numero','complemento','bairro','cep'],
