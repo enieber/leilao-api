@@ -14,7 +14,7 @@ describe('Api leilao', function (){
     });
   });
   describe('when request at /leilao', () => {
-    it('test url / ', ()=>{
+    it('test url /leilao', ()=>{
       request.get(baseUrl+'/leilao').end(function assert(err, res){
         expect(err).to.not.be.ok;
         expect(res).to.have.property('status', 200);
@@ -23,7 +23,7 @@ describe('Api leilao', function (){
     });
   });
   describe('when request at /lotes', () => {
-    it('test url / ', ()=>{
+    it('test url /lotes ', ()=>{
       request.get(baseUrl+'/lotes').end(function assert(err, res){
         expect(err).to.not.be.ok;
         expect(res).to.have.property('status', 200);
@@ -32,7 +32,7 @@ describe('Api leilao', function (){
     });
   });
   describe('when request at /compradores', () => {
-    it('test url / ', ()=>{
+    it('test url /compradores', ()=>{
       request.get(baseUrl+'/compradores').end(function assert(err, res){
         expect(err).to.not.be.ok;
         expect(res).to.have.property('status', 200);
