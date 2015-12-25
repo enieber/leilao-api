@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-    const Leilao = sequelize.define('Leilao', {
+    const Leiloes = sequelize.define('Leiloes', {
         idEmpresa: {
             type: DataTypes.STRING
         },
@@ -25,15 +25,15 @@ module.exports = function(sequelize, DataTypes) {
     },{
       classMethods: {
         associate: function(models){
-          Leilao.belongsTo(models.Empresa, {
+          Leiloes.belongsTo(models.Empresas, {
             onDelete: "CASCADE",
             foreignkey: 'idLeilao'
           }),
-          Leilao.hasMany(models.Lote, {foreignkey: 'idLote'}),
-          Leilao.hasMany(models.Comprador, {foreignkey: 'idComprador'})
+          Leiloes.hasMany(models.Lotes, {foreignkey: 'idLote'}),
+          Leiloes.hasMany(models.Compradores, {foreignkey: 'idComprador'})
         }
       }
     });
 
-    return Leilao;
+    return Leiloes;
 }

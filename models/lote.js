@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-    const Lote = sequelize.define('Lote', {
+    const Lotes = sequelize.define('Lotes', {
         idLote:{
           type: DataTypes.INTEGER
         },
@@ -19,11 +19,11 @@ module.exports = function(sequelize, DataTypes) {
     }, {
        classMethods: {
          associate: function(models){
-          Lote.belongsTo(models.Leilao, {foreignkey: 'idLote'})
+          Lotes.belongsTo(models.Leiloes, {foreignkey: 'idLote'})
       }
 
     }
   });
 
-    return Lote;
+    return Lotes;
 }

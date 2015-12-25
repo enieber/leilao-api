@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-    const Empresa = sequelize.define('Empresa', {
+    const Empresas = sequelize.define('Empresas', {
         idEmpresa: {
             type: DataTypes.INTEGER,
             required: true,
@@ -43,12 +43,12 @@ module.exports = function(sequelize, DataTypes) {
   }, {
      classMethods: {
        associate: function(models){
-        Empresa.hasMany(models.Leilao, {foreignkey: 'idLeilao'}),
-        Empresa.hasMany(models.Comprador, {foreignkey: 'idComprador'})
+        Empresas.hasMany(models.Leiloes, {foreignkey: 'idLeilao'}),
+        Empresas.hasMany(models.Compradores, {foreignkey: 'idComprador'})
     }
 
   }
 });
 
-    return Empresa;
+    return Empresas;
 }

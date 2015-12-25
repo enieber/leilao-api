@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-    const Comprador = sequelize.define('Comprador', {
+    const Compradores = sequelize.define('Compradores', {
         idComprador: {
             type: DataTypes.INTEGER,
             required: true,
@@ -18,11 +18,11 @@ module.exports = function(sequelize, DataTypes) {
       }, {
          classMethods: {
            associate: function(models){
-            Comprador.belongsTo(models.Leilao, {
+            Compradores.belongsTo(models.Leiloes, {
               onDelete: "CASCADE",
               foreignkey: 'idComprador'
             })
-            Comprador.belongsTo(models.Empresa, {
+            Compradores.belongsTo(models.Empresas, {
               onDelete: "CASCADE",
               foreignkey: 'idComprador'
             })
@@ -31,5 +31,5 @@ module.exports = function(sequelize, DataTypes) {
       }
       });
 
-    return Comprador;
+    return Compradores;
 }
