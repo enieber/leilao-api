@@ -1,74 +1,70 @@
 'use strict';
 
+const Joi = require('joi');
+const Controller = require('../controller/empresa.controller');
 
-const Controller = require('../controllers/empresa');
-
-exports.register = (server, options, next) => {
-  const controller = new Controller(options.database);
-  server.bind(controller);
+exports.register = (server) => {
+  const controllerEmpresa = Controller;
+  server.bind(controllerEmpresa);
   server.route([
         {
             method: 'GET',
             path: '/empresa',
             config: {
-              handler: controller.get
+              handler: controllerEmpresa.get
             }
         },
         {
             method: 'GET',
             path: '/empresa/{idEmpresa}',
             config: {
-              handler: controller.getId,
+              handler: controllerEmpresa.getById,
               validate: {
                 params: {
                   idEmpresa: Joi
                       .number()
                       .integer()
-                      .regex(/^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i, '_id')
                       .required()
                 }
               }
             }
         },
-        {
-            method: ['GET','DELETE'],
-            path: '/empresa/{idEmpresa}/destroy',
-            config: {
-              handler: controller.destroy,
-              validate: {
-                params: {
-                  idEmpresa: Joi
-                      .number()
-                      .integer()
-                      .regex(/^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i, '_id')
-                      .required()
-                }
-              }
-            }
-        }
+        // {
+        //     method: ['GET','DELETE'],
+        //     path: '/empresa/{idEmpresa}/destroy',
+        //     config: {
+        //       handler: controllerEmpresa.destroy,
+        //       validate: {
+        //         params: {
+        //           idEmpresa: Joi
+        //               .number()
+        //               .integer()
+        //               .regex(/^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i, '_id')
+        //               .required()
+        //         }
+        //       }
+        //     }
+        // }
         {
           method: 'POST',
           path: '/empresa',
           config: {
-            handler: controller.get,
+            handler: controllerEmpresa.post,
             validate: {
               payload: {
                 idEmpresa: Joi
                     .number()
                     .integer()
-                    .regex(/^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i, '_id')
                     .required(),
                 idLeilao: Joi
                     .number()
                     .integer()
-                    .regex(/^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i, '_id')
                     .required(),
                 cnpj: Joi
-                    .number()
-                    .integer()
+                    .string()
                     .required()
                     .min(14)
-                    .max(14)
+                    .max(19)
                     .required(),
                 razaoSocial: Joi
                   .string()
@@ -94,39 +90,38 @@ exports.register = (server, options, next) => {
                   .required(),
                 telefone: Joi
                   .number()
-                  .integer()
-                  .min(8)
-                  .max(32)
+                  .min(11111111)
+                  .max(99999999999),
                 logradouro: Joi
                   .string()
                   .min(4)
-                  .max(64)
+                  .max(64),
                 municipio: Joi
                   .string()
                   .min(4)
-                  .max(64)
+                  .max(64),
                 numero: Joi
                   .number()
                   .integer()
                   .min(1)
-                  .max(10)
+                  .max(10),
                 complemento: Joi
                   .string()
                   .min(4)
-                  .max(64)
+                  .max(64),
                 bairro: Joi
                   .string()
                   .min(4)
-                  .max(64)
+                  .max(64),
                 cep: Joi
                   .number()
                   .integer()
                   .min(8)
-                  .max(16)
+                  .max(99999999)
               }
             }
           }
         }
 
     ]);
-}();
+};

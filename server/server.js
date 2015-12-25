@@ -1,6 +1,6 @@
 const Hapi = require('hapi');
 const models = require('../models');
-const routes = require('../routes');
+const empresa = require('../routes/empresa');
 const Inert = require('inert');
 const path = require('path');
 const server = new Hapi.Server();
@@ -10,9 +10,10 @@ server.connection({
     port: 3000
 });
 
-  for (var router in routes) {
-      server.route(routes[router]);
-  }
+empresa.register(server);
+  // for (var router in routes) {
+  //     server.route(routes[router]);
+  // }
 
 
 models.sequelize.sync().then(function() {

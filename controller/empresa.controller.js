@@ -1,5 +1,45 @@
-function post(){
-  models.Empresa.create({
+"use strict";
+
+const models = require('../models');
+
+exports.get = function(request, reply) {
+
+  models.Empresas.findAll({
+    attributes: ['idEmpresa', 'cnpj', 'razaoSocial', 'usuario', 'senha', 'email', 'telefone', 'logradouro', 'municipio','numero','complemento','bairro','cep'],
+    include: [models.Leiloes]
+  }).then(function (empresa) {
+      reply(empresa);
+  });
+};
+  //
+  // this.model.findOneAsync({_id: id, owner: userId})
+  // .then((todo) => {
+  //   if (!todo) {
+  //     return reply.notFound();
+  //   }
+  //
+  //   reply(todo);
+  // })
+  // .catch((err) => {
+  //   reply.badImplementation(err.message);
+  // });
+// };
+
+exports.getById = function(request, reply) {
+  let idEmpresa = request.params['idEmpresa'];
+  models.Empresas.find({
+    where:{
+        idEmpresa: request.params['idEmpresa']
+    },
+    attributes: ['idEmpresa', 'cnpj', 'razaoSocial', 'usuario', 'senha', 'email', 'telefone', 'logradouro', 'municipio','numero','complemento','bairro','cep'],
+    include: [models.Leiloes]
+  }).then(function (empresa) {
+      reply(empresa);
+  })
+};
+
+exports.post = function(request, reply){
+  models.Empresas.create({
       idEmpresa: request.query['idEmpresa'],
       idLeilao: request.query['idLeilao'],
       cnpj: request.query['cnpj'],
@@ -17,44 +57,24 @@ function post(){
   }).then(function (empresa) {
       reply(empresa);
   });
-}
+};
 
-function get() {
-  models.Empresa.findAll({
-    attributes: ['idEmpresa', 'cnpj', 'razaoSocial', 'usuario', 'senha', 'email', 'telefone', 'logradouro', 'municipio','numero','complemento','bairro','cep'],
-    include: [models.Leilao]
-  }).then(function (empresa) {
-      reply(empresa);
-  })
-}
 
-function getById() {
-  models.Empresa.find({
-    where:{
-        idEmpresa: request.params['idEmpresa']
-    },
-    attributes: ['idEmpresa', 'cnpj', 'razaoSocial', 'usuario', 'senha', 'email', 'telefone', 'logradouro', 'municipio','numero','complemento','bairro','cep'],
-    include: [models.Leilao]
-  }).then(function (empresa) {
-      reply(empresa);
-  })
-}
-
-function destroy(){
-  models.Empresa.find({
-      where: {
-          idEmpresa: request.params['idEmpresa']
-      },
-      include: [models.Leilao]
-  }).then(function (empresa) {
-      models.Leilao.destroy({
-          where: {
-              idEmpresa:request.params['idEmpresa']
-          }
-      }).then(function (affectedRows) {
-          empresa.destroy().then(function () {
-              reply(affectedRows);
-          });
-      });
-  });
-}
+// function destroy(){
+//   models.Empresas.find({
+//       where: {
+//           idEmpresa: request.params['idEmpresa']
+//       },
+//       include: [models.Leilao]
+//   }).then(function (empresa) {
+//       models.Leilao.destroy({
+//           where: {
+//               idEmpresa:request.params['idEmpresa']
+//           }
+//       }).then(function (affectedRows) {
+//           empresa.destroy().then(function () {
+//               reply(affectedRows);
+//           });
+//       });
+//   });
+// }

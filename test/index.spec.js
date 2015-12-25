@@ -10,7 +10,7 @@ const loteTeste = require('./lote.spec');
 describe('Api leilao', function (){
   let baseUrl = "http://localhost:3000";
   empresaTeste.empresa(baseUrl,request,expect);
-  compradorTeste.comprador(baseUrl,request,expect);
-  leilaoTeste.leilao(baseUrl,request,expect);
-  loteTeste.lote(baseUrl,request,expect);
+  // compradorTeste.comprador(baseUrl,request,expect);
+  // leilaoTeste.leilao(baseUrl,request,expect);
+  // loteTeste.lote(baseUrl,request,expect);
 });
