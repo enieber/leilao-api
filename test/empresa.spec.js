@@ -18,5 +18,13 @@ exports.empresa = function(baseUrl,request,expect) {
       });
     });
 
+    it('test invalid URL /empresa/abc', (done) => {
+      request.get(baseUrl+'/empresa/abc').end(function assert(err, res) {
+        expect(err).to.not.be.ok;
+        done();
+      });
+    });
+
+
   });
 }

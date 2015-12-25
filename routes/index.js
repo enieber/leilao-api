@@ -1,9 +1,16 @@
 'use strict';
+
+const empresa = require('../empresa');
 const Hapi = require('hapi');
 const server = new Hapi.Server();
 const path = require('path');
 const fs = require('fs');
 const _ = require('lodash');
+const models = require('../models');
+const Joi = require('joi');
+
+empresa.empresaController(models, Joi);
+
 let  mod = {};
 
 fs.readdirSync(__dirname).forEach(function (file) {
