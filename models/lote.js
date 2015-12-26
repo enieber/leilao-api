@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
               notNull: true
             }
-        }
+        },
         valor: {
           type: 'NUMERIC',
           validate: {
