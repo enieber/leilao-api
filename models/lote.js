@@ -3,7 +3,9 @@
 module.exports = function(sequelize, DataTypes) {
     const Lotes = sequelize.define('Lotes', {
         idLote:{
-          type: DataTypes.INTEGER
+          type: DataTypes.INTEGER,
+          autoIncrement: true,
+          primaryKey: true
         },
         idLeilao: {
             type: DataTypes.INTEGER,

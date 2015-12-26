@@ -4,8 +4,8 @@ module.exports = function(sequelize, DataTypes) {
     const Compradores = sequelize.define('Compradores', {
         idComprador: {
             type: DataTypes.INTEGER,
-            required: true,
-            unique: true
+            autoIncrement: true,
+            primaryKey: true
         },
         idEmpresa: {
             type: DataTypes.INTEGER,
@@ -14,6 +14,10 @@ module.exports = function(sequelize, DataTypes) {
         idLeilao: {
             type: DataTypes.INTEGER,
             required: true
+        },
+        nomeComprador:{
+          type: DataTypes.STRING,
+          required: true
         }
       }, {
          classMethods: {

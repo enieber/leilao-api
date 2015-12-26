@@ -3,12 +3,13 @@
 module.exports = function(sequelize, DataTypes) {
     const Leiloes = sequelize.define('Leiloes', {
         idEmpresa: {
-            type: DataTypes.STRING
+            type: DataTypes.INTEGER,
+            required: true
         },
         codigo: {
             type: DataTypes.INTEGER,
-            required: true,
-            unique: true
+            autoIncrement: true,
+            primaryKey: true
         },
         descricao: {
             type: DataTypes.STRING(60),

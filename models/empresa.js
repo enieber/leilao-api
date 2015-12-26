@@ -4,8 +4,8 @@ module.exports = function(sequelize, DataTypes) {
     const Empresas = sequelize.define('Empresas', {
         idEmpresa: {
             type: DataTypes.INTEGER,
-            required: true,
-            unique: true
+            autoIncrement: true,
+            primaryKey: true,
         },
         cnpj: {
             type: DataTypes.STRING(32),
