@@ -3,7 +3,7 @@
 const Joi = require('joi');
 const Controller = require('../controller/empresa.controller');
 
-exports.register = (server) => {
+exports.route = (server) => {
   const controllerEmpresa = Controller;
   server.bind(controllerEmpresa);
   server.route([

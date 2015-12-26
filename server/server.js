@@ -1,6 +1,7 @@
 const Hapi = require('hapi');
 const models = require('../models');
 const empresa = require('../routes/empresa');
+const test = require('../routes/index');
 const Inert = require('inert');
 const path = require('path');
 const server = new Hapi.Server();
@@ -9,8 +10,8 @@ server.connection({
     host: 'localhost',
     port: 3000
 });
-
-empresa.register(server);
+test.route(server);
+empresa.route(server);
   // for (var router in routes) {
   //     server.route(routes[router]);
   // }

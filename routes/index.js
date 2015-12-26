@@ -1,5 +1,14 @@
-// 'use strict';
-//
+'use strict';
+
+exports.route = (server) => {
+  server.route([{
+      method: 'GET',
+      path: '/test',
+      handler: function (request, reply) {
+          reply({"test":"ok"});
+      }
+  }]);
+};
 // const empresa = require('../empresa');
 // const Hapi = require('hapi');
 // const server = new Hapi.Server();
