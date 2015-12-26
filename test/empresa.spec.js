@@ -39,8 +39,8 @@ exports.empresa = function(baseUrl,request,expect) {
     it('test post /empresa', (done) => {
       request.post(baseUrl+'/empresa')
         .send({
-      idEmpresa: 1,
-      idLeilao: 1,
+      idEmpresa: 4,
+      idLeilao: 4,
       cnpj: '12.345.678./0002-96',
       razaoSocial: 'Motivados por um mundo melhor',
       usuario: 'joao',
@@ -49,7 +49,7 @@ exports.empresa = function(baseUrl,request,expect) {
       telefone: 6652515451,
       logradouro: 'Portoario',
       municipio: 'Sorriso',
-      numero: 1258,
+      numero: 10,
       bairro: 'Centro',
       cep: 78588888
       }).end(function assert(err, res) {
