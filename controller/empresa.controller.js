@@ -40,20 +40,20 @@ exports.getById = function(request, reply) {
 
 exports.post = function(request, reply){
   models.Empresas.create({
-      idEmpresa: request.query['idEmpresa'],
-      idLeilao: request.query['idLeilao'],
-      cnpj: request.query['cnpj'],
-      razaoSocial: request.query['razaoSocial'],
-      usuario: request.query['usuario'],
-      senha: request.query['senha'],
-      email: request.query['email'],
-      telefone: request.query['telefone'],
-      logradouro: request.query['logradouro'],
-      municipio: request.query['municipio'],
-      numero: request.query['numero'],
-      complemento: request.query['complemento'],
-      bairro: request.query['bairro'],
-      cep: request.query['cep']
+      idEmpresa: request.payload['idEmpresa'],
+      idLeilao: request.payload['idLeilao'],
+      cnpj: request.payload['cnpj'],
+      razaoSocial: request.payload['razaoSocial'],
+      usuario: request.payload['usuario'],
+      senha: request.payload['senha'],
+      email: request.payload['email'],
+      telefone: request.payload['telefone'],
+      logradouro: request.payload['logradouro'],
+      municipio: request.payload['municipio'],
+      numero: request.payload['numero'],
+      complemento: request.payload['complemento'],
+      bairro: request.payload['bairro'],
+      cep: request.payload['cep']
   }).then(function (empresa) {
       reply(empresa);
   });
