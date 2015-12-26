@@ -9,15 +9,24 @@ module.exports = function(sequelize, DataTypes) {
         },
         idEmpresa: {
             type: DataTypes.INTEGER,
-            required: true
+            required: true,
+            validate: {
+              notNull: true
+            }
         },
         idLeilao: {
             type: DataTypes.INTEGER,
-            required: true
+            required: true,
+            validate: {
+              notNull: true
+            }
         },
         nomeComprador:{
           type: DataTypes.STRING,
-          required: true
+          required: true,
+          validate: {
+            notNull: true
+          }
         }
       }, {
          classMethods: {

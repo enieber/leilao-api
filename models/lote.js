@@ -9,15 +9,31 @@ module.exports = function(sequelize, DataTypes) {
         },
         idLeilao: {
             type: DataTypes.INTEGER,
-            required: true
+            required: true,
+            validate: {
+              notNull: true
+            }
         },
         numero: DataTypes.INTEGER,
         descricao: {
             type: DataTypes.STRING(60),
-            required: true
+            required: true,
+            validate: {
+              notNull: true
+            }
         },
-        quantidade: 'NUMERIC',
-        valor: 'NUMERIC'
+        quantidade:{
+            type: 'NUMERIC',
+            validate: {
+              notNull: true
+            }
+        }
+        valor: {
+          type: 'NUMERIC',
+          validate: {
+            notNull: true
+          }
+      }
     }, {
        classMethods: {
          associate: function(models){

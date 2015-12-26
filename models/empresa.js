@@ -5,30 +5,43 @@ module.exports = function(sequelize, DataTypes) {
         idEmpresa: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
-            primaryKey: true,
+            primaryKey: true
         },
         cnpj: {
             type: DataTypes.STRING(32),
             required: true,
-            unique: true
+            unique: true,
+            validate: {
+              notNull: true
+            }
         },
         razaoSocial:{
             type: DataTypes.STRING(64),
             required: true,
-            unique: true
+            validate: {
+              notNull: true
+            }
         },
         usuario: {
             type: DataTypes.STRING(20),
             required: true,
+            validate: {
+              notNull: true
+            },
             unique: true
         },
         senha: {
             type: DataTypes.STRING(128),
             required: true,
-            unique: true
+            validate: {
+              notNull: true
+            }
         },
         email: {
             type: DataTypes.STRING(254),
+            validate: {
+              notNull: true
+            },
             required: true,
             unique: true
         },
