@@ -11,38 +11,28 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING(32),
             required: true,
             unique: true,
-            validate: {
-              notNull: true
-            }
+            allowNull: false
         },
         razaoSocial:{
             type: DataTypes.STRING(64),
             required: true,
-            validate: {
-              notNull: true
-            }
+            allowNull: false
         },
         usuario: {
             type: DataTypes.STRING(20),
             required: true,
-            validate: {
-              notNull: true
-            },
+            allowNull: false,
             unique: true
         },
         senha: {
             type: DataTypes.STRING(128),
             required: true,
-            validate: {
-              notNull: true
-            }
+            allowNull: false
         },
         email: {
             type: DataTypes.STRING(254),
-            validate: {
-              notNull: true
-            },
             required: true,
+            allowNull: false,
             unique: true
         },
         telefone: DataTypes.STRING(32),

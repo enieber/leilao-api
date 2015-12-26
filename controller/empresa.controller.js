@@ -11,19 +11,6 @@ exports.get = function(request, reply) {
       reply(empresa);
   });
 };
-  //
-  // this.model.findOneAsync({_id: id, owner: userId})
-  // .then((todo) => {
-  //   if (!todo) {
-  //     return reply.notFound();
-  //   }
-  //
-  //   reply(todo);
-  // })
-  // .catch((err) => {
-  //   reply.badImplementation(err.message);
-  // });
-// };
 
 exports.getById = function(request, reply) {
   let idEmpresa = request.params['idEmpresa'];
@@ -59,22 +46,51 @@ exports.post = function(request, reply){
   });
 };
 
+exports.destroy = function(request, reply){
+  models.Empresas.find({
+      where: {
+          idEmpresa: request.params['idEmpresa']
+      },
+      include: [models.Leiloes]
+  }).then(function (empresa) {
+      models.Leiloes.destroy({
+          where: {
+              idEmpresa:request.params['idEmpresa']
+          }
+      }).then(function (affectedRows) {
+          empresa.destroy().then(function () {
+              reply(affectedRows);
+          });
+      });
+  });
+};
 
-// function destroy(){
-//   models.Empresas.find({
-//       where: {
-//           idEmpresa: request.params['idEmpresa']
-//       },
-//       include: [models.Leilao]
-//   }).then(function (empresa) {
-//       models.Leilao.destroy({
-//           where: {
-//               idEmpresa:request.params['idEmpresa']
-//           }
-//       }).then(function (affectedRows) {
-//           empresa.destroy().then(function () {
-//               reply(affectedRows);
-//           });
-//       });
-//   });
-// }
+exports.update = function(request, reply){
+  models.Empresas.find({
+      where: {
+          idEmpresa: request.params['idEmpresa']
+      },
+      include: [models.Leiloes]
+  }).then(function(empresa) {
+    if(empresa){
+      models.Empresas.update({
+          idEmpresa: request.payload['idEmpresa'],
+          idLeilao: request.payload['idLeilao'],
+          cnpj: request.payload['cnpj'],
+          razaoSocial: request.payload['razaoSocial'],
+          usuario: request.payload['usuario'],
+          senha: request.payload['senha'],
+          email: request.payload['email'],
+          telefone: request.payload['telefone'],
+          logradouro: request.payload['logradouro'],
+          municipio: request.payload['municipio'],
+          numero: request.payload['numero'],
+          complemento: request.payload['complemento'],
+          bairro: request.payload['bairro'],
+          cep: request.payload['cep']
+      }).then(function (empresa) {
+          reply(empresa);
+      });
+    }
+  })
+};
