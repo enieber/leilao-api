@@ -11,14 +11,6 @@ exports.empresa = function(baseUrl,request,expect) {
       });
     });
 
-    it('test bad request /empresa/abc', (done) => {
-      request.get(baseUrl+'/empresa/abc').end(function assert(err, res) {
-        expect(err).to.be.ok;
-        expect(res).to.have.property('status', 400);
-        done();
-      });
-    });
-
     it('test valid URL /empresa/123', (done) => {
       request.get(baseUrl+'/empresa/123').end(function assert(err, res){
         expect(err).to.not.be.ok;
@@ -27,6 +19,13 @@ exports.empresa = function(baseUrl,request,expect) {
       });
     });
 
+    it('test bad request /empresa/abc', (done) => {
+      request.get(baseUrl+'/empresa/abc').end(function assert(err, res) {
+        expect(err).to.be.ok;
+        expect(res).to.have.property('status', 400);
+        done();
+      });
+    });
     // it('test post /empresa', (done) => {
     //   request.post(baseUrl+'/empresa')
     //     .send({
