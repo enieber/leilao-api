@@ -11,6 +11,14 @@ exports.leilao = function(baseUrl,request,expect) {
       });
     });
 
+    it('test valid URL /leilao/1', (done) => {
+      request.get(baseUrl+'/leilao/1').end(function assert(err, res){
+        expect(err).to.not.be.ok;
+        expect(res).to.have.property('status', 200);
+        done();
+      });
+    });
+
     it('test valid URL /empresa/1/leilao', (done) => {
       request.get(baseUrl+'/empresa/1/leilao').end(function assert(err, res){
         expect(err).to.not.be.ok;
@@ -42,6 +50,6 @@ exports.leilao = function(baseUrl,request,expect) {
         done();
       });
     });
-    
+
   });
 };
