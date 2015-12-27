@@ -23,8 +23,8 @@ exports.getByIdLeilao = function(request, reply) {
       }).then(function (leilao) {
         models.Lotes.findAll({
           attributes: ['idLote', 'numero', 'descricao', 'quantidade', 'valor']
-        }).then(function (leilao) {
-            reply(leilao);
+        }).then(function (lote) {
+            reply(lote);
         })
       });
   });
