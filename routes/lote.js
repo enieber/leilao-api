@@ -16,6 +16,21 @@ exports.route = (server) => {
         },
         {
             method: 'GET',
+            path: '/lote/{idLote}',
+            config: {
+              handler: controller.getById,
+              validate: {
+                params: {
+                  idLote: Joi
+                      .number()
+                      .integer()
+                      .required()
+              }
+            }
+            }
+        },
+        {
+            method: 'GET',
             path: '/empresa/{idEmpresa}/leilao/{codigo}/lote',
             config: {
               handler: controller.getByIdLeilao,
