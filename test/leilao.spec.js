@@ -27,14 +27,6 @@ exports.leilao = function(baseUrl,request,expect) {
       });
     });
 
-    it('test bad request /empresa/abc/leilao', (done) => {
-      request.get(baseUrl+'/empresa/abc/leilao').end(function assert(err, res) {
-        expect(err).to.be.ok;
-        expect(res).to.have.property('status', 400);
-        done();
-      });
-    });
-
     it('test valid URL /empresa/1/leilao/1', (done) => {
       request.get(baseUrl+'/empresa/1/leilao/1').end(function assert(err, res){
         expect(err).to.not.be.ok;
@@ -42,7 +34,7 @@ exports.leilao = function(baseUrl,request,expect) {
         done();
       });
     });
-
+    
     it('test bad request /empresa/1/leilao/abc', (done) => {
       request.get(baseUrl+'/empresa/1/leilao/abc').end(function assert(err, res) {
         expect(err).to.be.ok;
