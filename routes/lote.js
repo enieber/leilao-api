@@ -29,7 +29,7 @@ exports.route = (server) => {
                       .number()
                       .integer()
                       .required()
-                }
+              }
             }
           }
         }
