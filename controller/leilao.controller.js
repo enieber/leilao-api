@@ -13,12 +13,12 @@ exports.get = function(request, reply) {
 }
 
 exports.getByIdEmpresa = function(request, reply) {
-  models.Leiloes.find({
+  models.Empresas.find({
       where: {
           idEmpresa: request.params['idEmpresa']
       }
   }).then(function (empresa) {
-      reply(leilao);
+      reply(empresa);
   });
 }
 
