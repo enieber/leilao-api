@@ -74,7 +74,6 @@ exports.update = function(request, reply){
   }).then(function(empresa) {
     if(empresa){
       models.Empresas.update({
-          idEmpresa: request.payload['idEmpresa'],
           idLeilao: request.payload['idLeilao'],
           cnpj: request.payload['cnpj'],
           razaoSocial: request.payload['razaoSocial'],
