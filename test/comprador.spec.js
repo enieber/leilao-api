@@ -11,6 +11,14 @@ exports.comprador = function(baseUrl,request,expect) {
       });
     });
 
+    it('test url /comprador/1', (done)=>{
+      request.get(baseUrl+'/comprador/1').end(function assert(err, res){
+        expect(err).to.not.be.ok;
+        expect(res).to.have.property('status', 200);
+        done();
+      });
+    });
+
     it('test valid URL /empresa/1/leilao/2/lote/2/comprador', (done) => {
       request.get(baseUrl+'/empresa/1/leilao/1/lote/2/comprador').end(function assert(err, res){
         expect(err).to.not.be.ok;

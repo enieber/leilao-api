@@ -15,17 +15,48 @@ exports.route = (server) => {
           }
         },
         {
+          method: 'GET',
+          path: '/comprador/{idComprador}',
+          config: {
+            handler: controller.getById,
+            validate:{
+              params: {
+                idComprador: Joi
+                    .number()
+                    .integer()
+                    .required()
+              }
+            }
+          }
+        },
+        {
             method: 'GET',
             path: '/empresa/{idEmpresa}/leilao/{codigo}/lote/{idLote}/comprador',
             config: {
-              handler: controller.getByLote
+              handler: controller.getByLote,
+              validate: {
+                params: {
+                  idEmpresa: Joi
+                      .number()
+                      .integer()
+                      .required(),
+                  codigo: Joi
+                      .number()
+                      .integer()
+                      .required(),
+                  idLote: Joi
+                      .number()
+                      .integer()
+                      .required()
             }
+          }
+        }
         },
         {
             method: 'GET',
             path: '/empresa/{idEmpresa}/leilao/{codigo}/lote/{idLote}/comprador/{idComprador}',
             config: {
-              handler: controller.getById,
+              handler: controller.getByIdFather,
               validate: {
                 params: {
                   idEmpresa: Joi

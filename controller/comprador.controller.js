@@ -10,6 +10,17 @@ exports.get = function(request, reply) {
   })
 };
 
+exports.getById = function(request, reply) {
+  models.Compradores.find({
+    where: {
+        idComprador: request.params['idComprador']
+    },
+    attributes: ['idComprador','idEmpresa','idLeilao'],
+  }).then(function (comprador) {
+      reply(comprador);
+  })
+};
+
 exports.getByLote = function(request, reply){
   models.Empresas.find({
       where: {
@@ -35,7 +46,7 @@ exports.getByLote = function(request, reply){
       });
   });
 }
-exports.getById = function(request, reply){
+exports.getByIdFather = function(request, reply){
   models.Empresas.find({
       where: {
           idEmpresa: request.params['idEmpresa']
