@@ -19,7 +19,7 @@ describe('Api leilao', function (){
     });
   });
   empresaTeste.empresa(baseUrl,request,expect);
-  // compradorTeste.comprador(baseUrl,request,expect);
   leilaoTeste.leilao(baseUrl,request,expect);
-  // loteTeste.lote(baseUrl,request,expect);
+  loteTeste.lote(baseUrl,request,expect);
+  // compradorTeste.comprador(baseUrl,request,expect);
 });

@@ -2,6 +2,7 @@ const Hapi = require('hapi');
 const models = require('../models');
 const empresa = require('../routes/empresa');
 const leilao = require('../routes/leilao');
+const lote = require('../routes/lote');
 const test = require('../routes/index');
 const Inert = require('inert');
 const path = require('path');
@@ -14,6 +15,7 @@ server.connection({
 test.route(server);
 empresa.route(server);
 leilao.route(server);
+lote.route(server);
   // for (var router in routes) {
   //     server.route(routes[router]);
   // }

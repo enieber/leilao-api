@@ -27,4 +27,4 @@ exports.leilao = function(baseUrl,request,expect) {
       });
     });
   });
-}
+};
