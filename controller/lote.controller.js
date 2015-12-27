@@ -29,3 +29,25 @@ exports.getByIdLeilao = function(request, reply) {
       });
   });
 };
+
+exports.getById = function(request, reply) {
+  models.Empresas.find({
+      where: {
+          idEmpresa: request.params['idEmpresa']
+      }
+  }).then(function (empresa) {
+      models.Leiloes.find({
+          where: {
+              codigo: request.params['codigo']
+          }
+      }).then(function (leilao) {
+          models.Lotes.find({
+            where: {
+              idLote: request.params['idLote']
+            }
+          }).then(function (lote){
+            reply(lote);
+          });
+      });
+  });
+}

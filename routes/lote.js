@@ -32,6 +32,29 @@ exports.route = (server) => {
               }
             }
           }
+        },
+        {
+            method: 'GET',
+            path: '/empresa/{idEmpresa}/leilao/{codigo}/lote/{idLote}',
+            config: {
+              handler: controller.getById,
+              validate: {
+                params: {
+                  idEmpresa: Joi
+                      .number()
+                      .integer()
+                      .required(),
+                  codigo: Joi
+                      .number()
+                      .integer()
+                      .required(),
+                  idLote: Joi
+                      .number()
+                      .integer()
+                      .required()
+              }
+            }
+          }
         }
         // }, {
         //     method: 'POST',
