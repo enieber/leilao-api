@@ -5,9 +5,7 @@ module.exports = function(sequelize, DataTypes) {
         idEmpresa: {
             type: DataTypes.INTEGER,
             required: true,
-            validate: {
-              notNull: true
-            }
+            allowNull: false
         },
         codigo: {
             type: DataTypes.INTEGER,
@@ -17,23 +15,17 @@ module.exports = function(sequelize, DataTypes) {
         descricao: {
             type: DataTypes.STRING(60),
             required: true,
-            validate: {
-              notNull: true
-            }
+            allowNull: false
         },
         vendedor: {
             type: DataTypes.INTEGER,
             required: true,
-            validate: {
-              notNull: true
-            }
+            allowNull: false
         },
         inicioPrevisto: {
             type: DataTypes.DATE,
             required: true,
-            validate: {
-              notNull: true
-            }
+            allowNull: false
         }
     },{
       classMethods: {

@@ -18,7 +18,15 @@ exports.getByIdEmpresa = function(request, reply) {
           idEmpresa: request.params['idEmpresa']
       }
   }).then(function (empresa) {
-      reply(empresa);
+    models.Leiloes.find({
+      where: {
+          idEmpresa: request.params['idEmpresa']
+      },
+      include: [models.Lotes],
+      include: [models.Compradores]
+    }).then(function (leilao) {
+        reply(leilao);
+    })
   });
 }
 
@@ -62,37 +70,36 @@ exports.getById = function(request, reply) {
 //       });
 //   });
 // }
-//
-// function destroy() {
-//   models.Empresa.find({
-//       where: {
-//           idEmpresa: request.params['idEmpresa']
-//       }
-//   }).then(function (empresa) {
-//       models.Leilao.find({
-//           where: {
-//               codigo: request.params['codigo']
-//           },
-//           include: [models.Lote],
-//           include: [models.Comprador]
-//       }).then(function (leilao) {
-//         leilao.setEmpresa(null).then(function () {
-//           models.Lote.destroy({
-//               where: {
-//                   idLeilao: leilao.codigo
-//               }
-//           }),
-//           models.Comprador.destroy({
-//             where: {
-//                 idLeilao: leilao.codigo
-//             }
-//           }).then(function (affectedRows) {
-//               leilao.destroy().then(function () {
-//                   reply.redirect('/');
-//               });
-//           });
-//         });
-//
-//       });
-//   });
-// }
+
+exports.create = function(request, reply) {
+  models.Empresas.find({
+      where: {
+          idEmpresa: request.params['idEmpresa']
+      }
+  }).then(function (empresa) {
+      models.Leiloes.create({
+        idEmpresa: empresa.idEmpresa,
+        descricao: request.payload['descricao'],
+        vendedor: request.payload['vendedor'],
+        inicioPrevisto: request.payload['inicioPrevisto']
+      }).then(function () {
+          reply.redirect('/leilao');
+      });
+  });
+};
+exports.destroy = function(request, reply) {
+  models.Empresas.find({
+      where: {
+          idEmpresa: request.params['idEmpresa']
+      },
+      include: [models.Leiloes]
+  }).then(function (empresa) {
+      models.Leiloes.destroy({
+          where: {
+              codigo:request.params['codigo']
+          }
+      }).then(function (affectedRows) {
+          reply(affectedRows);
+      });
+  });
+}

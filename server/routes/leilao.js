@@ -62,49 +62,41 @@ exports.route = (server) => {
               }
             }
           }
+      },
+      {
+          method: ['GET', 'DELETE'],
+          path: '/empresa/{idEmpresa}/leilao/{codigo}/destroy',
+          config: {
+            handler: controller.destroy,
+            validate: {
+              params: {
+                idEmpresa: Joi
+                    .number()
+                    .integer()
+                    .required(),
+                codigo: Joi
+                    .number()
+                    .integer()
+                    .required()
+              }
+            }
+          }
+      },
+      {
+          method: 'POST',
+          path: '/empresa/{idEmpresa}/leilao',
+          config: {
+            handler: controller.create,
+            validate: {
+              params: {
+                idEmpresa: Joi
+                    .number()
+                    .integer()
+                    .required()
+              }
+            }
+          }
       }
-      // {
-      //     method: ['GET', 'DELETE'],
-      //     path: '/empresa/{idEmpresa}/leilao/{codigo}/destroy',
-      //     config: {
-      //       handler: controller.getId,
-      //       validate: {
-      //         params: {
-      //           idEmpresa: Joi
-      //               .number()
-      //               .integer()
-      //               .required(),
-      //           codigo: Joi
-      //               .number()
-      //               .integer()
-      //               .required()
-      //         }
-      //       }
-      //     }
-      // },
-      // {
-      //     method: 'POST',
-      //     path: '/empresa/{idEmpresa}/leilao',
-      //     handler: function (request, reply) {
-      //
-      //         models.Empresa.find({
-      //             where: {
-      //                 idEmpresa: request.params['idEmpresa']
-      //             }
-      //         }).then(function (empresa) {
-      //             models.Leilao.create({
-      //               idEmpresa: request.payload['idEmpresa'],
-      //               codigo: request.payload['codigo'],
-      //               descricao: request.payload['descricao'],
-      //               vendedor: request.payload['vendedor'],
-      //               inicioPrevisto: request.payload['inicioPrevisto']
-      //             }).then(function () {
-      //                 reply.redirect('/');
-      //             });
-      //         });
-      //
-      //     }
-      // },
       // {
       //     method: ['POST','PUT'],
       //     path: '/empresa/{idEmpresa}/leilao/{codigo}/update',

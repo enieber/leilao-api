@@ -34,7 +34,7 @@ exports.leilao = function(baseUrl,request,expect) {
         done();
       });
     });
-    
+
     it('test bad request /empresa/1/leilao/abc', (done) => {
       request.get(baseUrl+'/empresa/1/leilao/abc').end(function assert(err, res) {
         expect(err).to.be.ok;
@@ -43,5 +43,25 @@ exports.leilao = function(baseUrl,request,expect) {
       });
     });
 
-  });
+    // it('test post request /empresa/18/leilao', (done) => {
+    //   request.post(baseUrl+'/empresa/18/leilao')
+    //     .send({
+    //       descricao: 'vendas de natal',
+    //       idEmpresa: '18',
+    //       vendedor: '1',
+    //       inicioPrevisto: '2015-12-25'
+    //     }).end(function assert(err, res) {
+    //       expect(err).to.not.be.ok;
+    //       expect(res).to.have.property('status', 200);
+    //       done();
+    //   });
+    // });
+  //   it('test delete /empresa/18/leilao/1/destroy', (done) => {
+  //    request.get(baseUrl+'/empresa/18/leilao/1/destroy').end(function assert(err, res){
+  //      expect(err).to.not.be.ok;
+  //      expect(res).to.have.property('status', 200);
+  //      done();
+  //    });
+  //  });
+  // });
 };
