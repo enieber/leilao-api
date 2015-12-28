@@ -55,26 +55,15 @@ exports.getById = function(request, reply) {
 };
 
 exports.create = function(request, reply) {
-  models.Empresas.find({
-      where: {
-          idEmpresa: request.params['idEmpresa']
-      },
-      include: [models.Leiloes]
-  }).then(function (empresa) {
-      models.Leiloes.find({
-        where: {
-          codigo: request.params['codigo']
-        },
-        include: [models.Lotes]
-      }).then(function () {
-        models.Lotes.create({
-          idLote: request.payload['idLote'],
-          numero: request.payload['numero'],
-          quantidade: request.payload['quantidade']
-        }).then(function(affectedRows) {
-        reply(affectedRows);
-      });
-      });
+    models.Lotes.create({
+      codigo: request.params['codigo'],
+      descricao: request.payload['descricao'],
+      idLote: request.payload['idLote'],
+      numero: request.payload['numero'],
+      valor: request.payload['valor'],
+      quantidade: request.payload['quantidade']
+    }).then(function(affectedRows) {
+    reply(affectedRows);
   });
 };
 
