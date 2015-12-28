@@ -59,7 +59,7 @@ exports.create = function(baseUrl,request,expect) {
            .send({
              codio: 1,
              nomeComprador: "Benedito",
-             idComprador: 1,
+             idComprador: 2,
              idEmpresa: 2,
              idLeilao: 3
            }).end(function assert(err, res) {
