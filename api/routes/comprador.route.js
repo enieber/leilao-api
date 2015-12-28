@@ -81,18 +81,26 @@ exports.route = (server) => {
         },
         {
             method: 'POST',
-            path: '/comprador',
-            handler: function (request, reply) {
-
-                models.Comprador.create({
-                    idComprador: request.payload['idComprador'],
-                    idEmpresa: request.payload['idEmpresa'],
-                    idLeilao: request.payload['idLeilao'],
-                }).then(function () {
-                    reply.redirect('/');
-                });
-
+            path: '/empresa/{idEmpresa}/leilao/{codigo}/lote/{idLote}/comprador',
+            config: {
+              handler: controller.getById,
+              validate: {
+                params: {
+                  idEmpresa: Joi
+                      .number()
+                      .integer()
+                      .required(),
+                  codigo: Joi
+                      .number()
+                      .integer()
+                      .required(),
+                  idLote: Joi
+                      .number()
+                      .integer()
+                      .required()
+              }
             }
+          }
         }, {
 
             method: 'DELETE',

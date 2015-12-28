@@ -52,6 +52,21 @@ exports.create = function(baseUrl,request,expect) {
              expect(res).to.have.property('status', 200);
              done();
          });
+         });
+
+       it('Create Comprador', (done) => {
+         request.post(baseUrl+'/empresa/2/leilao/1/lote/1/comprador')
+           .send({
+             codio: 1,
+             nomeComprador: "Benedito",
+             idComprador: 1,
+             idEmpresa: 2,
+             idLeilao: 3
+           }).end(function assert(err, res) {
+             expect(err).to.not.be.ok;
+             expect(res).to.have.property('status', 200);
+             done();
+         });
        });
 
   });
