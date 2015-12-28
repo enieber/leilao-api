@@ -1,10 +1,10 @@
 const Hapi = require('hapi');
-const models = require('./models');
-const empresa = require('./routes/empresa');
-const leilao = require('./routes/leilao');
-const lote = require('./routes/lote');
-const comprador = require('./routes/comprador');
-const test = require('./routes/index');
+const models = require('./model');
+const empresa = require('./routes/empresa.route');
+const lote = require('./routes/lote.route');
+const leilao = require('./routes/leilao.route');
+const comprador = require('./routes/comprador.route');
+const test = require('./routes/index.route');
 const Inert = require('inert');
 const path = require('path');
 const server = new Hapi.Server();
