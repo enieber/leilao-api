@@ -1,1 +1,0 @@
-# API Hapi with sequelize
