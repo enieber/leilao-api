@@ -42,6 +42,5 @@ exports.comprador = function(baseUrl,request,expect) {
         done();
       });
     });
-
   });
 }

@@ -7,32 +7,24 @@ module.exports = function(sequelize, DataTypes) {
           autoIncrement: true,
           primaryKey: true
         },
-        idLeilao: {
+        codigo: {
             type: DataTypes.INTEGER,
             required: true,
-            validate: {
-              notNull: true
-            }
+            allowNull: false
         },
         numero: DataTypes.INTEGER,
         descricao: {
             type: DataTypes.STRING(60),
             required: true,
-            validate: {
-              notNull: true
-            }
+            allowNull: false
         },
         quantidade:{
             type: 'NUMERIC',
-            validate: {
-              notNull: true
-            }
+            allowNull: false
         },
         valor: {
           type: 'NUMERIC',
-          validate: {
-            notNull: true
-          }
+          allowNull: false
       }
     }, {
        classMethods: {

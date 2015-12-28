@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const route = require('./routes/index');
-const models = require('./models');
+const route = require('../routes/index');
+const models = require('../models');
 
 models.sequelize.sync().then(function (){
     console.log("Ok");

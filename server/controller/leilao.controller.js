@@ -97,7 +97,9 @@ exports.destroy = function(request, reply) {
       models.Leiloes.destroy({
           where: {
               codigo:request.params['codigo']
-          }
+          },
+          include: [models.Lotes],
+          include: [models.Compradores]
       }).then(function (affectedRows) {
           reply(affectedRows);
       });

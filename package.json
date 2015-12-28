@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "bin": "node ./bin/www",
+    "bin": "node ./server/bin/www",
     "test": "mocha",
     "start": "nodemon server/server.js"
   },

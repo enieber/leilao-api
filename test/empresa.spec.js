@@ -54,7 +54,7 @@ exports.empresa = function(baseUrl,request,expect) {
     //     expect(res).to.have.property('status', 200);
     //     done();
     //   });
-    // });
+    });
 
   });
 }

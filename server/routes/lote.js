@@ -70,62 +70,47 @@ exports.route = (server) => {
               }
             }
           }
-        }
-        // }, {
-        //     method: 'POST',
-        //     path: '/empresa/{idEmpresa}/leilao/{codigo}/lotes',
-        //     handler: function (request, reply) {
-        //
-        //         models.Empresa.find({
-        //             where: {
-        //                 idEmpresa: request.params['idEmpresa']
-        //             }
-        //         }).then(function (empresa) {
-        //           models.Leilao.find({
-        //               where: {
-        //                   codigo: request.params['codigo']
-        //               },
-        //             }).then(function (leilao) {
-        //                 models.Lote.create({
-        //                   idLote: request.params['idLote'],
-        //                   idLeilao: request.params['codigo'],
-        //                   numero: request.params['numero'],
-        //                   descricao: request.params['descricao'],
-        //                   quantidade: request.params['quantidade'],
-        //                   valor: request.params['valor']
-        //                 }).then(function (lotes){
-        //                   reply.redirect('/lotes');
-        //                 });
-        //             });
-        //         });
-        //
-        //     }
-        // }, {
-        //     method: ['GET', 'DELETE'],
-        //     path: '/empresa/{idEmpresa}/leilao/{codigo}/lotes/{idLote}/destroy',
-        //     handler: function (request, reply) {
-        //         models.Empresa.find({
-        //             where: {
-        //                 idEmpresa: request.params['idEmpresa']
-        //             }
-        //           }).then(function (empresa) {
-        //             models.Leilao.find({
-        //                 where: {
-        //                     codigo: request.params['codigo']
-        //                 },
-        //               }).then(function (leilao) {
-        //                 models.Lote.destroy({
-        //                   where: {
-        //                     idLote: request.params['idLote']
-        //                   }
-        //                 }).then(function (affectedRows) {
-        //                     reply.redirect('/');
-        //                 });
-        //               });
-        //
-        //         });
-        //     }
-        //   }
+        }, {
+            method: 'POST',
+            path: '/empresa/{idEmpresa}/leilao/{codigo}/lote',
+            config: {
+              handler: controller.create,
+              validate: {
+                params: {
+                  idEmpresa: Joi
+                      .number()
+                      .integer()
+                      .required(),
+                  codigo: Joi
+                      .number()
+                      .integer()
+                      .required()
+              }
+            }
+          }
+        }, {
+            method: ['GET', 'DELETE'],
+            path: '/empresa/{idEmpresa}/leilao/{codigo}/lote/{idLote}/destroy',
+            config: {
+              handler: controller.destroy,
+              validate: {
+                params: {
+                  idEmpresa: Joi
+                      .number()
+                      .integer()
+                      .required(),
+                  codigo: Joi
+                      .number()
+                      .integer()
+                      .required(),
+                  idLote: Joi
+                      .number()
+                      .integer()
+                      .required()
+              }
+            }
+          }
+          }
         // }, {
         //     method: ['POST','PUT'],
         //     path: '/empresa/{idEmpresa}/leilao/{codigo}/update',
