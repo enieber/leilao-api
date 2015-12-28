@@ -9,8 +9,8 @@ const loteTeste = require('./lote.spec');
 
 describe('Api leilao', function (){
   let baseUrl = "http://localhost:3000";
-  describe('test server', function (){
-    it('test server running', (done) => {
+  describe('test api', function (){
+    it('test api running', (done) => {
       request.get(baseUrl+'/test').end(function assert(err, res){
         expect(err).to.not.be.ok;
         expect(res).to.have.property('status', 200);

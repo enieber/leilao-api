@@ -4,7 +4,7 @@ const models = require('../models');
 
 exports.get = function(request, reply) {
   models.Compradores.findAll({
-    attributes: ['idComprador','idEmpresa','idLeilao'],
+    attributes: ['idComprador','idEmpresa','codigo'],
   }).then(function (comprador) {
       reply(comprador);
   })
@@ -15,7 +15,7 @@ exports.getById = function(request, reply) {
     where: {
         idComprador: request.params['idComprador']
     },
-    attributes: ['idComprador','idEmpresa','idLeilao'],
+    attributes: ['idComprador','idEmpresa','codigo'],
   }).then(function (comprador) {
       reply(comprador);
   })
@@ -38,7 +38,7 @@ exports.getByLote = function(request, reply){
           }
         }).then(function (lote) {
           models.Compradores.findAll({
-            attributes: ['idComprador','idEmpresa','idLeilao'],
+            attributes: ['idComprador','idEmpresa','codigo'],
           }).then(function (comprador) {
               reply(comprador);
           })

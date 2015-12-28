@@ -19,12 +19,12 @@ leilao.route(server);
 lote.route(server);
 comprador.route(server);
   // for (var router in routes) {
-  //     server.route(routes[router]);
+  //     api.route(routes[router]);
   // }
 
 
 models.sequelize.sync().then(function() {
       server.start(function () {
-          console.log("Hapi server started @", server.info.uri);
+          console.log("Hapi api started @", server.info.uri);
       });
 });

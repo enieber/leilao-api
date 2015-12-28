@@ -1,4 +1,4 @@
-const serve = require('./server/server');
+const serve = require('./api/server');
 serve.start(function () {
-    console.log("Hapi server started @", server.info.uri);
+    console.log("Hapi api started @", server.info.uri);
 });

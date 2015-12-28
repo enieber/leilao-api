@@ -28,7 +28,7 @@ exports.getById = function(request, reply) {
 exports.post = function(request, reply){
   models.Empresas.create({
       idEmpresa: request.payload['idEmpresa'],
-      idLeilao: request.payload['idLeilao'],
+      codigo: request.payload['codigo'],
       cnpj: request.payload['cnpj'],
       razaoSocial: request.payload['razaoSocial'],
       usuario: request.payload['usuario'],
@@ -74,7 +74,7 @@ exports.update = function(request, reply){
   }).then(function(empresa) {
     if(empresa){
       models.Empresas.update({
-          idLeilao: request.payload['idLeilao'],
+          codigo: request.payload['codigo'],
           cnpj: request.payload['cnpj'],
           razaoSocial: request.payload['razaoSocial'],
           usuario: request.payload['usuario'],

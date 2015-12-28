@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
         associate: function(models){
           Leiloes.belongsTo(models.Empresas, {
             onDelete: "CASCADE",
-            foreignkey: 'idLeilao'
+            foreignkey: 'codigo'
           }),
           Leiloes.hasMany(models.Lotes, {foreignkey: 'idLote'}),
           Leiloes.hasMany(models.Compradores, {foreignkey: 'idComprador'})

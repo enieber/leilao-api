@@ -10,23 +10,17 @@ module.exports = function(sequelize, DataTypes) {
         idEmpresa: {
             type: DataTypes.INTEGER,
             required: true,
-            validate: {
-              notNull: true
-            }
+            allowNull: false
         },
-        idLeilao: {
+        codigo: {
             type: DataTypes.INTEGER,
             required: true,
-            validate: {
-              notNull: true
-            }
+            allowNull: false
         },
         nomeComprador:{
           type: DataTypes.STRING,
           required: true,
-          validate: {
-            notNull: true
-          }
+          allowNull: false
         }
       }, {
          classMethods: {
