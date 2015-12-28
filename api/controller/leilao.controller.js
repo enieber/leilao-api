@@ -1,6 +1,6 @@
 "use strict";
 
-const models = require('../models');
+const models = require('../model');
 
 exports.get = function(request, reply) {
   models.Leiloes.findAll({
