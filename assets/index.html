@@ -2,20 +2,31 @@
 <html>
 <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
     <title>Home page</title>
+    <link rel="stylesheet" href="/public/stylesheets/style.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body ng-app="leilao-app">
 
 <div ng-controller="mainController">
 
 </div>
+<header>
+  <nav class="navbar navbar-default">
+  <div class="container">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="/">Angular Routing Example</a>
+      </div>
 
-<script src="/node_modules/angular/angular.js"></script>
-<script src="/node_modules/angular-aria/angular-aria.js"></script>
-<script src="/node_modules/angular-animate/angular-animate.js"></script>
-<script src="/node_modules/angular-material/angular-material.js"></script>
-<script src="main.js"></script>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+          <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+      </ul>
+  </div>
+  </nav>
+</header>
+<script src="./node_modules/angular"></script>
+<script src="./assts/js"></script>
 
 </body>
 </html>
