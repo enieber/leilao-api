@@ -74,7 +74,7 @@ exports.getByIdFather = function(request, reply){
   });
 }
 
-exports.post = function(request, reply){
+exports.create = function(request, reply){
 
   models.Compradores.create({
       codigo: request.params['codigo'],
@@ -86,3 +86,13 @@ exports.post = function(request, reply){
       reply('/comprador');
   });
 }
+
+exports.destroy = function(request, reply){
+    models.Compradores.destroy({
+          where: {
+              idComprador:request.params['idComprador']
+          }
+      }).then(function (affectedRows) {
+        reply('/comprador');
+      })
+};

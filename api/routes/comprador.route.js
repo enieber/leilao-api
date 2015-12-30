@@ -83,7 +83,7 @@ exports.route = (server) => {
             method: 'POST',
             path: '/empresa/{idEmpresa}/leilao/{codigo}/lote/{idLote}/comprador',
             config: {
-              handler: controller.post,
+              handler: controller.create,
               validate: {
                 params: {
                   idEmpresa: Joi
@@ -101,31 +101,34 @@ exports.route = (server) => {
               }
             }
           }
-        }, {
-
-            method: 'DELETE',
-            path: '/comprador/{id}',
-            handler: function (request, reply) {
-
-                models.Comprador.find({
-                    where: {
-                        id: request.params['idComprador']
-                    },
-                    include: [models.Leilao]
-                }).then(function (comprador) {
-                    models.Leilao.destroy({
-                        where: {
-                            idComprador: comprador.id
-                        }
-                    }).then(function (affectedRows) {
-                        comprador.destroy().then(function () {
-                            reply.redirect('/');
-                        });
-                    });
-                });
-
+        },
+        {
+              method: 'DELETE',
+              path: '/empresa/{idEmpresa}/leilao/{codigo}/lote/{idLote}/comprador/{idComprador}/destroy',
+              config: {
+                handler: controller.destroy,
+                validate: {
+                  params: {
+                    idEmpresa: Joi
+                        .number()
+                        .integer()
+                        .required(),
+                    codigo: Joi
+                        .number()
+                        .integer()
+                        .required(),
+                    idLote: Joi
+                        .number()
+                        .integer()
+                        .required(),
+                    idComprador: Joi
+                        .number()
+                        .integer()
+                        .required()
+                }
+              }
             }
-        }
+          }
 
     ]);
 }

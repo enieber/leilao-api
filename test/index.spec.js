@@ -18,4 +18,5 @@ describe('Api leilao', function (){
   loteTeste.lote(baseUrl,request,expect);
   compradorTeste.comprador(baseUrl,request,expect);
   posts.create(baseUrl,request,expect);
+  deletes.delete(baseUrl, request, expect);
 });
