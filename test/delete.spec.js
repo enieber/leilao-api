@@ -1,7 +1,7 @@
 "use strict";
 
 exports.delete = function(baseUrl,request,expect) {
-  describe('Create datas', () => {
+  describe('Delete datas', () => {
 
     it('Delete Comprador', (done) => {
       request.delete(baseUrl+'/empresa/2/leilao/1/lote/1/comprador/1/destroy').end(function assert(err, res) {
