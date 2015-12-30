@@ -23,7 +23,7 @@ comprador.route(server);
   // }
 
 
-models.sequelize.sync().then(function() {
+models.sequelize.sync({force: true}).then(function() {
       server.start(function () {
           console.log("Hapi api started @", server.info.uri);
       });

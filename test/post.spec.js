@@ -25,11 +25,10 @@ exports.create = function(baseUrl,request,expect) {
        });
 
        it('Create Leilao', (done) => {
-         request.post(baseUrl+'/empresa/2/leilao')
+         request.post(baseUrl+'/empresa/1/leilao')
            .send({
              codigo: 1,
              descricao: 'vendas de natal',
-             idEmpresa: 2,
              vendedor: 1,
              inicioPrevisto: '2015-12-25'
            }).end(function assert(err, res) {

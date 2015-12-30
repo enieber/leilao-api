@@ -72,20 +72,14 @@ exports.getById = function(request, reply) {
 // }
 
 exports.create = function(request, reply) {
-  models.Empresas.find({
-      where: {
-          idEmpresa: request.params['idEmpresa']
-      }
-  }).then(function (empresa) {
       models.Leiloes.create({
-        idEmpresa: empresa.idEmpresa,
+        idEmpresa: request.params['idEmpresa'],
         descricao: request.payload['descricao'],
         vendedor: request.payload['vendedor'],
         inicioPrevisto: request.payload['inicioPrevisto']
       }).then(function () {
           reply.redirect('/leilao');
       });
-  });
 };
 exports.destroy = function(request, reply) {
   models.Empresas.find({
