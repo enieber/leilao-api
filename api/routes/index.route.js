@@ -13,7 +13,7 @@ exports.route = (server) => {
         method: 'GET',
         path: '/',
         handler: function (request, reply) {
-            reply.file('./assets/index.html');
+            reply('Home');
         }
     }
   ]);

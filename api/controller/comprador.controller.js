@@ -77,12 +77,12 @@ exports.getByIdFather = function(request, reply){
 exports.post = function(request, reply){
 
   models.Compradores.create({
-      codio: request.params['codio'],
+      codigo: request.params['codigo'],
       nomeComprador: request.payload['nomeComprador'],
       idComprador: request.payload['idComprador'],
       idEmpresa: request.payload['idEmpresa'],
       idLeilao: request.payload['idLeilao'],
   }).then(function () {
-      reply.redirect('/');
+      reply('/comprador');
   });
 }

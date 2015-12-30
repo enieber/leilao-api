@@ -83,7 +83,7 @@ exports.route = (server) => {
             method: 'POST',
             path: '/empresa/{idEmpresa}/leilao/{codigo}/lote/{idLote}/comprador',
             config: {
-              handler: controller.getById,
+              handler: controller.post,
               validate: {
                 params: {
                   idEmpresa: Joi
